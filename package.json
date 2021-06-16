@@ -16,6 +16,7 @@
     "bs-platform": "8.3.2",
     "electron-devtools-installer": "3.1.1",
     "electron-log": "4.2.4",
+    "electron-run-in-browser": "^1.0.0",
     "electron-updater": "4.3.1",
     "electron-window-state": "5.0.3",
     "moment": "2.25.3",
@@ -58,7 +59,7 @@
     "@typescript-eslint/parser": "4.7.0",
     "custom-env": "2.0.1",
     "dotenv": "8.2.0",
-    "electron": "^13.0.1",
+    "electron": "^13.1.2",
     "electron-builder": "22.9.1",
     "electron-notarize": "0.3.0",
     "eslint": "7.13.0",
@@ -76,7 +77,8 @@
     "ts-loader": "8.0.11",
     "typescript": "3.8.3",
     "webpack": "5.4.0",
-    "webpack-cli": "4.2.0"
+    "webpack-cli": "4.2.0",
+    "webpack-dev-server": "^3.11.2"
   },
   "scripts": {
     "prerelease:win": "set NODE_ENV=development && node ./deploy/buildInsiderWin.js",
@@ -97,6 +99,8 @@
     "re:clean": "bsb -clean-world",
     "lint": "eslint \"src/\" --ext \".ts\" --ext \".tsx\"",
     "start": "electron .",
+    "web:start": "webpack serve --open",
+    "web:build": "webpack",
     "test": "jest",
     "circ": "madge -c ./src",
     "release:main": "standard-version --skip.commit --skip.tag",

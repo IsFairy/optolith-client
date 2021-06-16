@@ -1,6 +1,6 @@
-import { ProgressInfo } from "builder-util-runtime"
+//import { ProgressInfo } from "builder-util-runtime"
 import { ipcRenderer, remote, webFrame } from "electron"
-import { UpdateInfo } from "electron-updater"
+//import { UpdateInfo } from "electron-updater"
 import * as React from "react"
 import { render } from "react-dom"
 import { Provider } from "react-redux"
@@ -9,18 +9,18 @@ import { composeWithDevTools } from "redux-devtools-extension"
 import thunk from "redux-thunk"
 import { backAccelerator, openSettingsAccelerator, quitAccelerator, redoAccelerator, saveHeroAccelerator, undoAccelerator } from "./App/Actions/AcceleratorActions"
 import { ReduxDispatch } from "./App/Actions/Actions"
-import { addAlert, addErrorAlert, AlertOptions } from "./App/Actions/AlertActions"
+//import { addAlert, addErrorAlert, AlertOptions } from "./App/Actions/AlertActions"
 import { requestInitialData } from "./App/Actions/InitializationActions"
 import { requestClose } from "./App/Actions/IOActions"
 import { showAbout } from "./App/Actions/LocationActions"
-import { setUpdateDownloadProgress, updateAvailable, updateNotAvailable } from "./App/Actions/UpdateActions"
+//import { setUpdateDownloadProgress, updateAvailable, updateNotAvailable } from "./App/Actions/UpdateActions"
 import { AppContainer } from "./App/Containers/AppContainer"
 import { AppState, AppStateRecord } from "./App/Models/AppState"
 import { appReducer } from "./App/Reducers/appReducer"
 import { getWiki } from "./App/Selectors/stateSelectors"
 import { translate, translateP } from "./App/Utilities/I18n"
 import { addKeybinding } from "./App/Utilities/Keybindings"
-import { hasOwnProperty } from "./App/Utilities/Object"
+//import { hasOwnProperty } from "./App/Utilities/Object"
 import { pipe } from "./App/Utilities/pipe"
 import { isDialogOpen } from "./App/Utilities/SubwindowsUtils"
 import { flip } from "./Data/Function"
@@ -148,44 +148,44 @@ render (
   document.querySelector ("#bodywrapper")
 )
 
-ipcRenderer.addListener ("update-available", (_event: Event, info: UpdateInfo) => {
-  const dispatch = store.dispatch as ReduxDispatch
+// ipcRenderer.addListener ("update-available", (_event: Event, info: UpdateInfo) => {
+//   const dispatch = store.dispatch as ReduxDispatch
 
-  dispatch (updateAvailable (info))
-})
+//   dispatch (updateAvailable (info))
+// })
 
-ipcRenderer.addListener ("update-not-available", () => {
-  const dispatch = store.dispatch as ReduxDispatch
+// ipcRenderer.addListener ("update-not-available", () => {
+//   const dispatch = store.dispatch as ReduxDispatch
 
-  dispatch (updateNotAvailable ())
-})
+//   dispatch (updateNotAvailable ())
+// })
 
-ipcRenderer.addListener ("download-progress", (_event: Event, progressObj: ProgressInfo) => {
-  store.dispatch (setUpdateDownloadProgress (progressObj))
-})
+// ipcRenderer.addListener ("download-progress", (_event: Event, progressObj: ProgressInfo) => {
+//   store.dispatch (setUpdateDownloadProgress (progressObj))
+// })
 
-const isError = (err: Error | {}): err is Error => hasOwnProperty ("name") (err)
-                                                   && hasOwnProperty ("message") (err)
+// const isError = (err: Error | {}): err is Error => hasOwnProperty ("name") (err)
+//                                                    && hasOwnProperty ("message") (err)
 
-ipcRenderer.addListener ("auto-updater-error", (_event: Event, err: Error | {}) => {
-  const dispatch = store.dispatch as ReduxDispatch
+// ipcRenderer.addListener ("auto-updater-error", (_event: Event, err: Error | {}) => {
+//   const dispatch = store.dispatch as ReduxDispatch
 
-  dispatch (setUpdateDownloadProgress ())
+//   dispatch (setUpdateDownloadProgress ())
 
-  console.error (err)
+//   console.error (err)
 
-  if (isError (err)) {
-    dispatch (addErrorAlert (AlertOptions ({
-                              title: Just (`${err.name} during update`),
-                              message: `An error occured during auto-update:\n${err.message}`,
-                            })))
-      .catch (console.error)
-  }
-  else {
-    dispatch (addAlert (AlertOptions ({
-                         title: Just ("Server Error"),
-                         message: `The server does not respond.`,
-                       })))
-      .catch (console.error)
-  }
-})
+//   if (isError (err)) {
+//     dispatch (addErrorAlert (AlertOptions ({
+//                               title: Just (`${err.name} during update`),
+//                               message: `An error occured during auto-update:\n${err.message}`,
+//                             })))
+//       .catch (console.error)
+//   }
+//   else {
+//     dispatch (addAlert (AlertOptions ({
+//                          title: Just ("Server Error"),
+//                          message: `The server does not respond.`,
+//                        })))
+//       .catch (console.error)
+//   }
+// })
